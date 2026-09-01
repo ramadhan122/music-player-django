@@ -5,4 +5,4 @@ from .models import Song
 class SongAdmin(admin.ModelAdmin):
     list_display = ("title", "artist")
     search_fields = ("title", "artist")
-    fields = ("title", "artist", "file", "cover", "lyric", "lrc")
+    fields = ("title", "artist", "file", "cover", "lrc")
