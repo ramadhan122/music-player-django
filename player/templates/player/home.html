@@ -8,77 +8,123 @@
 </head>
 <body>
     <div class="container">
+
         <!-- Playlist di kiri -->
         <div class="playlist-card">
             <div class="playlist-title">
                 🎵 Playlist
-                <span class="playlist-count" id="playlistCount">{{ songs|length }}</span>
+                <span class="playlist-count" id="playlistCount">
+                    {{ songs|length }}
+                </span>
             </div>
+
             <div class="song-list" id="songList">
                 {% for song in songs %}
-                <div class="song-item{% if forloop.first %} active{% endif %}" 
-                    onclick="selectSong({{ forloop.counter0 }})" 
-                    data-index="{{ forloop.counter0 }}">
-                    <img class="song-cover" 
-                        src="{% if song.cover %}{{ song.cover.url }}{% else %}{% static 'default.jpg' %}{% endif %}" 
-                        alt="{{ song.title }}">
-                    <div class="song-info">
-                        <div class="song-title">{{ song.title }}</div>
-                        <div class="song-artist">{{ song.artist|default:"Unknown Artist" }}</div>
+                    <div class="song-item{% if forloop.first %} active{% endif %}"
+                        onclick="selectSong({{ forloop.counter0 }})"
+                        data-index="{{ forloop.counter0 }}">
+
+                        <img class="song-cover"
+                            src="{% if song.cover %}{{ song.cover.url }}{% else %}{% static 'default.jpg' %}{% endif %}"
+                            alt="{{ song.title }}">
+
+                        <div class="song-info">
+                            <div class="song-title">{{ song.title }}</div>
+                            <div class="song-artist">
+                                {{ song.artist|default:"Unknown Artist" }}
+                            </div>
+                        </div>
+
+                        <div class="song-duration"
+                            id="duration-{{ forloop.counter0 }}">
+                            --:--
+                        </div>
                     </div>
-                    <div class="song-duration" id="duration-{{ forloop.counter0 }}">--:--</div>
-                </div>
                 {% endfor %}
             </div>
         </div>
 
-        <!-- Kolom utama: player + lyrics + visualizer -->
+        <!-- Player + Lyrics -->
         <div class="main-column">
+
             <div class="top-row">
+
+                <!-- Player -->
                 <div class="player" id="player">
+
                     <div class="cover">
                         {% if songs.0.cover %}
-                            <img id="cover" src="{{ songs.0.cover.url }}" alt="Album Cover">
+                            <img id="cover"
+                                src="{{ songs.0.cover.url }}"
+                                alt="Album Cover">
                         {% else %}
-                            <img id="cover" src="{% static 'default.jpg' %}" alt="Album Cover">
+                            <img id="cover"
+                                src="{% static 'default.jpg' %}"
+                                alt="Album Cover">
                         {% endif %}
                     </div>
+
                     <div class="info">
-                        <div class="title" id="title">{{ songs.0.title }}</div>
-                        <div class="artist" id="artist">{{ songs.0.artist }}</div>
+                        <div class="title" id="title">
+                            {{ songs.0.title }}
+                        </div>
+
+                        <div class="artist" id="artist">
+                            {{ songs.0.artist|default:"Unknown Artist" }}
+                        </div>
                     </div>
+
                     <div class="progress-container" id="progressContainer">
                         <div class="progress" id="progress"></div>
                     </div>
+
                     <div class="time-display">
                         <span id="currentTime">0:00</span>
                         <span id="duration">0:00</span>
                     </div>
+
                     <audio id="audio" src="{{ songs.0.file.url }}"></audio>
+
                     <div class="controls">
-                        <button class="control-btn" onclick="prevSong()">⏮</button>
-                        <button class="control-btn" id="playBtn" onclick="togglePlay()">▶</button>
-                        <button class="control-btn" onclick="nextSong()">⏭</button>
+                        <button class="control-btn"
+                                onclick="prevSong()">⏮</button>
+
+                        <button class="control-btn"
+                                id="playBtn"
+                                onclick="togglePlay()">▶</button>
+
+                        <button class="control-btn"
+                                onclick="nextSong()">⏭</button>
                     </div>
+
                     <div class="volume-container">
-                        🔊 <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="70">
+                        🔊
+                        <input type="range"
+                            id="volumeSlider"
+                            class="volume-slider"
+                            min="0"
+                            max="100"
+                            value="70">
                     </div>
+
                 </div>
 
+                <!-- Lyrics -->
                 <div class="lyrics-card">
                     <div class="lyrics-title">🎧 Lyrics</div>
-                    <div class="lyrics-list" id="lyrics">No lyrics available.</div>
-                </div>
-            </div>
 
-            <!-- Visualizer diposisikan di bawah player + lyrics -->
-            <div class="visualizer-card">
-                <div class="visualizer-title"> Audio Visualizer</div>
-                <div class="visualizer-container">
-                    <div class="visualizer" id="visualizer"></div>
+                    <div class="lyrics-list" id="lyrics">
+                        No lyrics available.
+                    </div>
                 </div>
+
             </div>
         </div>
+        <!-- Visualizer -->
+        <div class="visualizer-container">
+            <div class="visualizer" id="visualizer"></div>
+        </div>
+
     </div>
     <script>
         const songs = [
