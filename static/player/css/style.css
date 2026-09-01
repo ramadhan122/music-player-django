@@ -32,14 +32,6 @@ body {
     overflow: hidden;
 }
 
-
-.main-column {
-    grid-column: 2;
-    grid-row: 1;
-
-    min-height: 0;
-}
-
 .visualizer-container {
     grid-column: 1 / -1;
     grid-row: 2;
@@ -99,12 +91,11 @@ body {
 /* Player box */
 .player {
     width: 780px;
-    height: 500px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
-    margin-top: 20px;
 }
 
 .cover img {
@@ -219,6 +210,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 12px;
+    padding-bottom: 10%;
     align-items: center;
 }
 
@@ -229,11 +221,10 @@ body {
 /* Lyrics box */
 .lyrics-card {
     width: 380px;
-    height: 500px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     padding: 18px;
-    margin-top: 20px;
 }
 
 .lyrics-title {
