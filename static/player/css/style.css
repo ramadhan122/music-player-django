@@ -69,7 +69,6 @@ body {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(1px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
     padding: 24px;
 }
 
@@ -292,7 +291,9 @@ body {
 
 
 .bar {
+    flex: 1 1 auto;
     width: 100%;
+    min-width: 3px;
     min-height: 3px;
     background: linear-gradient(to top, #667eea, #764ba2, #ff6b6b);
     border-radius: 2px;
@@ -306,7 +307,6 @@ body {
     display: flex;
     flex-direction: column;
     order: -1;
-    border-radius: 0 20px 20px 0;
     margin: 0;
 }
 
@@ -419,32 +419,220 @@ body {
     background: linear-gradient(180deg, #1e3a8a, #1e40af);
 }
 
-/* Responsive design */
-@media (max-width: 1200px) {
+/* =========================================================
+   MODE MOBILE - 1 LAYAR PENUH, TANPA SCROLL
+   Urutan: Player (atas) -> Playlist (lagu aktif saja)
+           -> Lirik (baris aktif saja) -> Visualizer (layer belakang)
+   ========================================================= */
+@media (max-width: 768px) {
+
+    html, body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        display: block;
+    }
+
     .container {
+        display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        height: auto;
-        padding: 20px;
+        justify-content: flex-start;
+        height: 100vh;
+        width: 100vw;
+        padding: 16px;
+        gap: 10px;
+        overflow: hidden;
+        position: relative;
     }
 
-    .playlist-card {
+    /* --- VISUALIZER: layer paling belakang, nempel di bawah layar, ditembus elemen lain --- */
+    .visualizer-container {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+        grid-column: unset;
+        grid-row: unset;
+        width: 100vw;
+        height: 55vh;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .visualizer {
         width: 100%;
-        max-width: 400px;
-        height: 400px;
-        order: 0;
+        height: 100%;
+        align-items: flex-end;
+        gap: 2px;
+        padding: 0 8px;
+        opacity: 0.55;
+        transform: scaleY(2);
+        transform-origin: bottom center;
     }
 
+    .bar {
+        min-width: 8px;
+        opacity: 0.75;
+        border-radius: 4px;
+    }
+
+    /* --- Semua card lain jadi transparan-blur biar visualizer kelihatan --- */
     .player,
     .lyrics-card,
-    .visualizer-card {
+    .playlist-card {
+        position: relative;
+        z-index: 1;
+        background: rgba(15, 15, 30, 0.35);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 18px;
         width: 100%;
-        max-width: 400px;
-        margin-top: 0;
     }
 
-    .visualizer-card {
-        margin-top: 16px;
+    .main-column,
+    .top-row {
+        display: contents;
+    }
+
+    /* --- 1) PLAYER paling atas --- */
+    .player {
+        order: 1;
+        height: auto;
+        flex-shrink: 0;
+        padding: 14px 18px;
+        gap: 6px;
+    }
+
+    .cover img {
+        width: 84px;
+        height: 84px;
+    }
+
+    .info {
+        height: auto;
+        padding: 0;
+        gap: 2px;
+    }
+
+    .title {
+        font-size: 14px;
+        line-height: 16px;
+        max-height: 32px;
+    }
+
+    .artist {
+        font-size: 11px;
+    }
+
+    .progress-container {
+        margin: 8px 0;
+    }
+
+    .controls {
+        margin: 8px 0;
+        gap: 12px;
+    }
+
+    .control-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+    }
+
+    #playBtn {
+        width: 46px;
+        height: 46px;
+        font-size: 16px;
+    }
+
+    /* Sembunyikan volume slider di mobile biar hemat tempat */
+    .volume-container {
+        display: none;
+    }
+
+    /* --- 2) PLAYLIST: hanya tampilkan lagu yang sedang diputar --- */
+    .playlist-card {
+        order: 2;
+        flex-shrink: 0;
+        height: auto;
+        padding: 10px 16px;
+        margin: 0;
+        border-radius: 18px;
+    }
+
+    .playlist-title {
+        display: none;
+    }
+
+    .song-list {
+        flex: none;
+        overflow: visible;
+        padding-right: 0;
+    }
+
+    .song-item {
+        display: none;
+        margin-bottom: 0;
+        padding: 6px 4px;
+        cursor: default;
+    }
+
+    .song-item.active {
+        display: flex;
+    }
+
+    .song-item:hover {
+        background: transparent;
+    }
+
+    .song-cover {
+        width: 38px;
+        height: 38px;
+    }
+
+    /* --- 3) LIRIK: hanya baris yang sedang aktif --- */
+    .lyrics-card {
+        order: 3;
+        flex: none;
+        height: auto;
+        min-height: 56px;
+        max-height: 90px;
+        padding: 10px 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .lyrics-title {
+        display: none;
+    }
+
+    .lyrics-list {
+        flex: none;
+        overflow: visible;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .lyrics-list.empty {
+        font-size: 13px;
+    }
+
+    .lyric-line {
+        display: none;
+        margin: 0;
+        text-align: center;
+    }
+
+    .lyric-line.active {
+        display: block;
+        font-size: 15px;
+        transform: none;
     }
 }
