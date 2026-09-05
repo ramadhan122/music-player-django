@@ -27,3 +27,12 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# Electron
+electron/node_modules/
+electron/release/
+
+# PyInstaller
+build/
+dist/
+*.spec
