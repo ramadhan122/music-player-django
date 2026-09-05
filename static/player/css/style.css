@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
@@ -7,13 +7,13 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Baloo 2', 'Inter', sans-serif;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     min-height: 100vh;
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-    color: #fff;
+    background: linear-gradient(135deg, #FFD93D);
+    color: #22223B;
     padding: 0;
     margin: 0;
 }
@@ -66,9 +66,10 @@ body {
 .player,
 .lyrics-card,
 .playlist-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(1px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #FFF9EC;
+    backdrop-filter: none;
+    border: 4px solid #22223B;
+    box-shadow: 6px 6px 0px #22223B;
     padding: 24px;
 }
 
@@ -95,17 +96,18 @@ body {
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+    background: #FFE8F0;
 }
 
 .cover img {
     width: 160px;
     height: 160px;
     border-radius: 50%;
-    border: 3px solid rgba(255, 255, 255, 0.2);
+    border: 5px solid #22223B;
     object-fit: cover;
     animation: rotate 12s linear infinite;
     animation-play-state: paused;
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 0 0 6px #FFD93D, 6px 6px 0px #22223B;
 }
 
 @keyframes rotate {
@@ -134,6 +136,7 @@ body {
 .title {
     font-size: 16px;
     font-weight: 700;
+    color: #FF3366;
     display: -webkit-box;
     line-clamp: 2;
     -webkit-line-clamp: 2;
@@ -146,7 +149,8 @@ body {
 
 .artist {
     font-size: 12px;
-    opacity: 0.75;
+    opacity: 0.8;
+    color: #22223B;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -154,25 +158,28 @@ body {
 
 .progress-container {
     width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
+    height: 10px;
+    background: #FFD93D;
+    border: 3px solid #22223B;
+    border-radius: 8px;
     margin: 12px 0;
     cursor: pointer;
-    border-radius: 2px;
+    overflow: hidden;
 }
 
 .progress {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    border-radius: 2px;
+    background: linear-gradient(90deg, #FF6B9D, #FF3366);
+    border-radius: 6px 0 0 6px;
 }
 
 .time-display {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
-    opacity: 0.7;
+    color: #22223B;
+    opacity: 0.8;
 }
 
 .controls {
@@ -186,24 +193,32 @@ body {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    border: none;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    border: 3px solid #22223B;
+    background: #6BCBFF;
+    color: #22223B;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.2s;
+    box-shadow: 3px 3px 0px #22223B;
+    transition: all 0.15s;
 }
 
 .control-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: scale(1.05);
+    background: #8FDBFF;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #22223B;
+}
+
+.control-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px #22223B;
 }
 
 #playBtn {
     width: 56px;
     height: 56px;
     font-size: 20px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #FF6B9D, #FF3366);
+    color: #FFF9EC;
 }
 
 .volume-container {
@@ -216,6 +231,7 @@ body {
 
 .volume-slider {
     width: 80px;
+    accent-color: #FF6B9D;
 }
 
 /* Lyrics box */
@@ -227,11 +243,13 @@ body {
     display: flex;
     flex-direction: column;
     padding: 18px;
+    background: #E4FBFF;
 }
 
 .lyrics-title {
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 800;
+    font-size: 18px;
+    color: #2EC4B6;
     margin-bottom: 8px;
     flex: none;
 }
@@ -254,6 +272,7 @@ body {
 .lyric-line {
     line-height: 22px;
     font-size: 14px;
+    color: #22223B;
     opacity: 0.45;
     margin-bottom: 2px;
     white-space: normal;
@@ -263,18 +282,19 @@ body {
 
 .lyric-line.active {
     opacity: 1;
-    font-weight: 700;
-    color: #fff;
-    transform: scale(1.05);
+    font-weight: 800;
+    color: #FF3366;
+    transform: scale(1.06);
 }
 
 /* VISUALIZER CARD BARU - DI BAWAH PLAYER DAN LYRICS */
 .visualizer-card {
     width: 100%;
     height: 200px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #FFF9EC;
+    border: 4px solid #22223B;
     border-radius: 20px;
+    box-shadow: 6px 6px 0px #22223B;
     padding: 18px;
     margin-top: 20px;
     /* Posisi di bawah player dan lyrics */
@@ -283,8 +303,9 @@ body {
 }
 
 .visualizer-title {
-    font-weight: 700;
+    font-weight: 800;
     font-size: 16px;
+    color: #22223B;
     margin-bottom: 12px;
     flex: none;
     display: flex;
@@ -298,8 +319,8 @@ body {
     width: 100%;
     min-width: 3px;
     min-height: 3px;
-    background: linear-gradient(to top, #667eea, #764ba2, #ff6b6b);
-    border-radius: 2px;
+    background: linear-gradient(to top, #6BCBFF, #FF6B9D, #FFD93D);
+    border-radius: 4px;
     transition: height 0.1s ease;
 }
 
@@ -311,11 +332,13 @@ body {
     flex-direction: column;
     order: -1;
     margin: 0;
+    background: #EAFBEA;
 }
 
 .playlist-title {
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 800;
+    font-size: 18px;
+    color: #2E9E4B;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -323,11 +346,13 @@ body {
 }
 
 .playlist-count {
-    background: rgba(255, 255, 255, 0.1);
+    background: #FFD93D;
+    border: 2px solid #22223B;
+    color: #22223B;
     padding: 2px 8px;
     border-radius: 12px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .song-list {
@@ -343,23 +368,26 @@ body {
     gap: 12px;
     padding: 12px 8px;
     border-radius: 12px;
+    border: 3px solid transparent;
     cursor: pointer;
     transition: all 0.2s ease;
     margin-bottom: 4px;
 }
 
 .song-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: #FFFFFF;
+    border-color: #22223B;
 }
 
 .song-item.active {
-    background: rgba(102, 126, 234, 0.2);
-    border: 1px solid rgba(102, 126, 234, 0.3);
+    background: #FFE8F0;
+    border: 3px solid #22223B;
+    box-shadow: 3px 3px 0px #22223B;
 }
 
 .song-item.active .song-info .song-title {
-    color: #667eea;
-    font-weight: 600;
+    color: #FF3366;
+    font-weight: 700;
 }
 
 .song-cover {
@@ -367,7 +395,7 @@ body {
     height: 48px;
     border-radius: 8px;
     object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid #22223B;
     flex-shrink: 0;
 }
 
@@ -378,7 +406,8 @@ body {
 
 .song-title {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
+    color: #22223B;
     margin-bottom: 2px;
     white-space: nowrap;
     overflow: hidden;
@@ -387,7 +416,7 @@ body {
 
 .song-artist {
     font-size: 12px;
-    opacity: 0.7;
+    opacity: 0.75;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -395,31 +424,32 @@ body {
 
 .song-duration {
     font-size: 12px;
-    opacity: 0.6;
+    opacity: 0.65;
     flex-shrink: 0;
 }
 
 /* Scrollbar untuk semua container */
 .lyrics-list::-webkit-scrollbar,
 .song-list::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 .lyrics-list::-webkit-scrollbar-track,
 .song-list::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: #FFF9EC;
     border-radius: 10px;
 }
 
 .lyrics-list::-webkit-scrollbar-thumb,
 .song-list::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #0f3460, #16213e);
+    background: linear-gradient(180deg, #FF6B9D, #FF3366);
     border-radius: 10px;
+    border: 2px solid #22223B;
 }
 
 .lyrics-list::-webkit-scrollbar-thumb:hover,
 .song-list::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #1e3a8a, #1e40af);
+    background: linear-gradient(180deg, #FFD93D, #FF9F1C);
 }
 
 /* =========================================================
@@ -471,15 +501,16 @@ body {
         align-items: flex-end;
         gap: 2px;
         padding: 0 8px;
-        opacity: 0.55;
+        opacity: 0.6;
         transform: scaleY(2);
         transform-origin: bottom center;
     }
 
     .bar {
         min-width: 8px;
-        opacity: 0.75;
+        opacity: 0.85;
         border-radius: 4px;
+        background: #000000;
     }
 
     /* --- Semua card lain jadi transparan-blur biar visualizer kelihatan --- */
@@ -488,10 +519,12 @@ body {
     .playlist-card {
         position: relative;
         z-index: 1;
-        background: rgba(15, 15, 30, 0.35);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        background: rgba(255, 249, 236, 0.85);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
         border-radius: 18px;
+        border: 4px solid #22223B;
+        box-shadow: 5px 5px 0px #22223B;
         width: 100%;
     }
 
