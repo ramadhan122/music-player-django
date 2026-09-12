@@ -1,77 +1,166 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* =========================================================
+COLOR PALETTE
+========================================================= */
+
+:root {
+    /* Main */
+    --bg-main: #15151d;
+    --bg-dark: #18181f;
+    --bg-deep: #111118;
+
+
+    /* Cards */
+    --player-bg: #241d2d;
+    --playlist-bg: #192a2a;
+    --lyrics-bg: #19252f;
+    --card-bg: #20202a;
+
+    /* Borders */
+    --border: #3a3947;
+    --border-soft: #302f3b;
+
+    /* Text */
+    --text-main: #f4f1f6;
+    --text-soft: #c3bec9;
+    --text-muted: #85818d;
+
+    /* Neon accents */
+    --pink: #ff5c9a;
+    --pink-light: #ff7caf;
+    --pink-dark: #c83f76;
+
+    --cyan: #54d8ed;
+    --cyan-light: #75e7f7;
+    --cyan-dark: #269aae;
+
+    --yellow: #ffd45a;
+    --yellow-light: #ffe48a;
+    --yellow-dark: #c79d29;
+
+    --green: #63d69a;
+    --green-light: #7ce9ad;
+    --green-dark: #3ca873;
+
+    /* Shadows */
+    --shadow: #0b0b10;
+
+
+}
+
+/* =========================================================
+RESET
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+/* =========================================================
+BODY
+========================================================= */
+
 body {
     font-family: 'Baloo 2', 'Inter', sans-serif;
+
+
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+
     min-height: 100vh;
-    background: linear-gradient(135deg, #FFD93D);
-    color: #22223B;
+
+    background:
+        radial-gradient(circle at 20% 20%,
+            rgba(255, 92, 154, 0.07),
+            transparent 30%),
+        radial-gradient(circle at 80% 30%,
+            rgba(84, 216, 237, 0.06),
+            transparent 30%),
+        var(--bg-main);
+
+    color: var(--text-main);
+
     padding: 0;
     margin: 0;
+
+
 }
+
+/* =========================================================
+MAIN CONTAINER
+========================================================= */
 
 .container {
     width: 100vw;
+
+
     margin-top: 36px;
+
     height: calc(100vh - 36px);
+
     box-sizing: border-box;
 
     display: grid;
+
     grid-template-columns: 320px minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr) 80px;
 
     gap: 0;
+
     padding: 0;
-    overflow: hidden;
-}
-
-.visualizer-container {
-    grid-column: 1 / -1;
-    grid-row: 2;
-
-    height: 80px;
-    min-height: 0;
-
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-}
-
-.visualizer {
-    width: 100%;
-    height: 80px;
-
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 3px;
 
     overflow: hidden;
+
+    background: var(--bg-main);
+
+
 }
 
-.top-row {
-    display: flex;
-    gap: 0;
-    width: 100%;
-}
+/* =========================================================
+COMMON CARDS
+========================================================= */
 
 .player,
 .lyrics-card,
 .playlist-card {
-    background: #FFF9EC;
+    background: var(--card-bg);
+
+
     backdrop-filter: none;
-    border: 4px solid #22223B;
-    box-shadow: 6px 6px 0px #22223B;
+
+    border: 3px solid var(--border);
+
+    box-shadow:
+        5px 5px 0 var(--shadow);
+
     padding: 24px;
+
+
+}
+
+/* =========================================================
+TOP ROW
+========================================================= */
+
+.top-row {
+    display: flex;
+
+
+    gap: 0;
+
+    width: 100%;
+
+
 }
 
 .playlist-card {
@@ -82,33 +171,116 @@ body {
 .main-column {
     grid-column: 2;
     grid-row: 1;
+
+
+    min-width: 0;
+
+
 }
+
+/* =========================================================
+VISUALIZER CONTAINER
+========================================================= */
 
 .visualizer-container {
     grid-column: 1 / -1;
     grid-row: 2;
+
+
+    height: 80px;
+
+    min-height: 0;
+
+    background: transparent !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    padding: 0 !important;
+
+    overflow: hidden;
+
+
 }
 
-/* Player box */
+.visualizer {
+    width: 100%;
+    height: 80px;
+
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    gap: 3px;
+
+    overflow: hidden;
+
+
+}
+
+/* =========================================================
+PLAYER
+========================================================= */
+
 .player {
     width: 780px;
+
+
     height: 100vh;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: space-between;
+
     text-align: center;
-    background: #FFE8F0;
+
+    background:
+        radial-gradient(circle at 50% 30%,
+            rgba(255, 92, 154, 0.12),
+            transparent 35%),
+        var(--player-bg);
+
+    border-top: none;
+    border-bottom: none;
+
+    border-left: 3px solid var(--border);
+    border-right: 3px solid var(--border);
+
+    box-shadow: none;
+
+
 }
+
+/* =========================================================
+COVER
+========================================================= */
 
 .cover img {
     width: 160px;
     height: 160px;
+
+
     border-radius: 50%;
-    border: 5px solid #22223B;
+
+    border: 5px solid #342b3b;
+
     object-fit: cover;
+
     animation: rotate 12s linear infinite;
+
     animation-play-state: paused;
-    box-shadow: 0 0 0 6px #FFD93D, 6px 6px 0px #22223B;
+
+    box-shadow:
+        0 0 0 5px var(--pink-dark),
+        6px 6px 0 var(--shadow),
+        0 0 24px rgba(255, 92, 154, 0.18);
+
+
 }
 
 @keyframes rotate {
@@ -116,320 +288,757 @@ body {
         transform: rotate(0deg);
     }
 
+
     to {
         transform: rotate(360deg);
     }
+
+
 }
 
-/* Info judul & artis */
+/* =========================================================
+SONG INFO
+========================================================= */
+
 .info {
     width: 100%;
+
+
     height: 64px;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
+
     align-items: center;
+
     padding: 0 12px;
+
     text-align: center;
+
     gap: 4px;
+
+
 }
 
 .title {
     font-size: 16px;
+
+
     font-weight: 700;
-    color: #FF3366;
+
+    color: var(--pink-light);
+
     display: -webkit-box;
+
     line-clamp: 2;
+
     -webkit-line-clamp: 2;
+
     -webkit-box-orient: vertical;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
     line-height: 18px;
+
     max-height: 36px;
+
+    text-shadow:
+        0 0 12px rgba(255, 92, 154, 0.2);
+
+
 }
 
 .artist {
     font-size: 12px;
+
+
+    color: var(--text-soft);
+
     opacity: 0.8;
-    color: #22223B;
+
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
+
 }
+
+/* =========================================================
+PROGRESS
+========================================================= */
 
 .progress-container {
     width: 100%;
+
+
     height: 10px;
-    background: #FFD93D;
-    border: 3px solid #22223B;
+
+    background: #302936;
+
+    border: 2px solid #514252;
+
     border-radius: 8px;
+
     margin: 12px 0;
+
     cursor: pointer;
+
     overflow: hidden;
+
+
 }
 
 .progress {
     height: 100%;
+
+
     width: 0%;
-    background: linear-gradient(90deg, #FF6B9D, #FF3366);
+
+    background:
+        linear-gradient(90deg,
+            var(--pink),
+            var(--pink-light),
+            var(--yellow));
+
     border-radius: 6px 0 0 6px;
+
+    box-shadow:
+        0 0 10px rgba(255, 92, 154, 0.35);
+
+
 }
+
+/* =========================================================
+TIME
+========================================================= */
 
 .time-display {
     display: flex;
+
+
     justify-content: space-between;
+
     font-size: 12px;
-    color: #22223B;
-    opacity: 0.8;
+
+    color: var(--text-muted);
+
+    opacity: 0.9;
+
+
 }
+
+/* =========================================================
+CONTROLS
+========================================================= */
 
 .controls {
     display: flex;
+
+
     justify-content: center;
+
     gap: 16px;
+
     margin: 16px 0;
+
+
 }
 
 .control-btn {
     width: 44px;
     height: 44px;
+
+
     border-radius: 12px;
-    border: 3px solid #22223B;
-    background: #6BCBFF;
-    color: #22223B;
+
+    border: 3px solid #484453;
+
+    background: #302c39;
+
+    color: var(--text-main);
+
     font-size: 16px;
+
     cursor: pointer;
-    box-shadow: 3px 3px 0px #22223B;
-    transition: all 0.15s;
+
+    box-shadow:
+        3px 3px 0 var(--shadow);
+
+    transition:
+        all 0.15s ease;
+
+
 }
 
 .control-btn:hover {
-    background: #8FDBFF;
+    background: #403849;
+
+
+    border-color: var(--cyan);
+
+    color: var(--cyan-light);
+
     transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0px #22223B;
+
+    box-shadow:
+        5px 5px 0 var(--shadow),
+        0 0 12px rgba(84, 216, 237, 0.15);
+
+
 }
 
 .control-btn:active {
     transform: translate(1px, 1px);
-    box-shadow: 1px 1px 0px #22223B;
+
+
+    box-shadow:
+        1px 1px 0 var(--shadow);
+
+
 }
+
+/* =========================================================
+PLAY BUTTON
+========================================================= */
 
 #playBtn {
     width: 56px;
     height: 56px;
+
+
     font-size: 20px;
-    background: linear-gradient(135deg, #FF6B9D, #FF3366);
-    color: #FFF9EC;
+
+    background:
+        linear-gradient(135deg,
+            var(--pink),
+            var(--pink-dark));
+
+    color: #fff;
+
+    border-color: var(--pink-light);
+
+    box-shadow:
+        4px 4px 0 var(--shadow),
+        0 0 18px rgba(255, 92, 154, 0.18);
+
+
 }
+
+#playBtn:hover {
+    background:
+        linear-gradient(135deg,
+            var(--pink-light),
+            var(--pink));
+
+
+    border-color: #ff9bc0;
+
+    color: white;
+
+    box-shadow:
+        6px 6px 0 var(--shadow),
+        0 0 24px rgba(255, 92, 154, 0.25);
+
+
+}
+
+/* =========================================================
+VOLUME
+========================================================= */
 
 .volume-container {
     display: flex;
+
+
     justify-content: center;
+
     gap: 12px;
+
     padding-bottom: 10%;
+
     align-items: center;
+
+
 }
 
 .volume-slider {
     width: 80px;
-    accent-color: #FF6B9D;
+
+
+    accent-color: var(--pink);
+
+    cursor: pointer;
+
+
 }
 
-/* Lyrics box */
+/* =========================================================
+LYRICS CARD
+========================================================= */
+
 .lyrics-card {
     flex: 1;
+
+
     width: auto;
+
     height: 100vh;
+
     min-width: 0;
+
     display: flex;
+
     flex-direction: column;
+
     padding: 18px;
-    background: #E4FBFF;
+
+    background:
+        radial-gradient(circle at 70% 20%,
+            rgba(84, 216, 237, 0.08),
+            transparent 35%),
+        var(--lyrics-bg);
+
+    border-left-color: #354552;
+
+
 }
+
+/* =========================================================
+LYRICS TITLE
+========================================================= */
 
 .lyrics-title {
     font-weight: 800;
+
+
     font-size: 18px;
-    color: #2EC4B6;
+
+    color: var(--cyan-light);
+
     margin-bottom: 8px;
+
     flex: none;
+
+    text-shadow:
+        0 0 10px rgba(84, 216, 237, 0.15);
+
+
 }
+
+/* =========================================================
+LYRICS LIST
+========================================================= */
 
 .lyrics-list {
     flex: 1;
+
+
     overflow-y: auto;
+
     overflow-x: hidden;
+
     padding: 0 12px;
+
+
 }
 
 .lyrics-list.empty {
     display: flex;
+
+
     justify-content: center;
+
     align-items: center;
+
     font-style: italic;
-    opacity: 0.6;
+
+    color: var(--text-muted);
+
+    opacity: 0.7;
+
+
 }
+
+/* =========================================================
+LYRIC LINE
+========================================================= */
 
 .lyric-line {
     line-height: 22px;
+
+
     font-size: 14px;
-    color: #22223B;
+
+    color: #8f9ca4;
+
     opacity: 0.45;
+
     margin-bottom: 2px;
+
     white-space: normal;
+
     overflow-wrap: break-word;
-    transition: 0.3s ease;
+
+    transition:
+        0.3s ease;
+
+
 }
 
 .lyric-line.active {
     opacity: 1;
+
+
     font-weight: 800;
-    color: #FF3366;
+
+    color: var(--cyan-light);
+
     transform: scale(1.06);
+
+    text-shadow:
+        0 0 12px rgba(84, 216, 237, 0.25);
+
+
 }
 
-/* VISUALIZER CARD BARU - DI BAWAH PLAYER DAN LYRICS */
+/* =========================================================
+VISUALIZER CARD
+========================================================= */
+
 .visualizer-card {
     width: 100%;
+
+
     height: 200px;
-    background: #FFF9EC;
-    border: 4px solid #22223B;
-    border-radius: 20px;
-    box-shadow: 6px 6px 0px #22223B;
+
+    background:
+        radial-gradient(circle at 50% 100%,
+            rgba(255, 92, 154, 0.08),
+            transparent 50%),
+        #1e2028;
+
+    border: 3px solid #3a3d49;
+
+    border-radius: 16px;
+
+    box-shadow:
+        5px 5px 0 var(--shadow);
+
     padding: 18px;
+
     margin-top: 20px;
-    /* Posisi di bawah player dan lyrics */
+
     display: flex;
+
     flex-direction: column;
+
+
 }
 
 .visualizer-title {
     font-weight: 800;
+
+
     font-size: 16px;
-    color: #22223B;
+
+    color: var(--yellow-light);
+
     margin-bottom: 12px;
+
     flex: none;
+
     display: flex;
+
     align-items: center;
+
     gap: 8px;
+
+
 }
 
+/* =========================================================
+VISUALIZER BAR
+========================================================= */
 
 .bar {
     flex: 1 1 auto;
+
+
     width: 100%;
+
     min-width: 3px;
+
     min-height: 3px;
-    background: linear-gradient(to top, #6BCBFF, #FF6B9D, #FFD93D);
+
+    background:
+        linear-gradient(to top,
+            var(--cyan),
+            var(--pink),
+            var(--yellow));
+
     border-radius: 4px;
-    transition: height 0.1s ease;
+
+    transition:
+        height 0.1s ease;
+
+    box-shadow:
+        0 0 8px rgba(84, 216, 237, 0.08);
+
+
 }
 
-/* Playlist box - Full height di kiri mepet */
+/* =========================================================
+PLAYLIST CARD
+========================================================= */
+
 .playlist-card {
     width: 320px;
+
+
     height: 100vh;
+
     display: flex;
+
     flex-direction: column;
+
     order: -1;
+
     margin: 0;
-    background: #EAFBEA;
+
+    background:
+        radial-gradient(circle at 20% 20%,
+            rgba(99, 214, 154, 0.07),
+            transparent 35%),
+        var(--playlist-bg);
+
+    border-right-color: #344846;
+
+
 }
+
+/* =========================================================
+PLAYLIST TITLE
+========================================================= */
 
 .playlist-title {
     font-weight: 800;
+
+
     font-size: 18px;
-    color: #2E9E4B;
+
+    color: var(--green-light);
+
     margin-bottom: 16px;
+
     display: flex;
+
     align-items: center;
+
     gap: 8px;
+
+    text-shadow:
+        0 0 10px rgba(99, 214, 154, 0.12);
+
+
 }
 
+/* =========================================================
+PLAYLIST COUNT
+========================================================= */
+
 .playlist-count {
-    background: #FFD93D;
-    border: 2px solid #22223B;
-    color: #22223B;
+    background: #2f3430;
+
+
+    border: 2px solid #53665a;
+
+    color: var(--yellow-light);
+
     padding: 2px 8px;
+
     border-radius: 12px;
+
     font-size: 12px;
+
     font-weight: 700;
+
+
 }
+
+/* =========================================================
+SONG LIST
+========================================================= */
 
 .song-list {
     flex: 1;
+
+
     overflow-y: auto;
+
     overflow-x: hidden;
+
     padding-right: 8px;
+
+
 }
+
+/* =========================================================
+SONG ITEM
+========================================================= */
 
 .song-item {
     display: flex;
+
+
     align-items: center;
+
     gap: 12px;
+
     padding: 12px 8px;
+
     border-radius: 12px;
+
     border: 3px solid transparent;
+
     cursor: pointer;
-    transition: all 0.2s ease;
+
+    transition:
+        all 0.2s ease;
+
     margin-bottom: 4px;
+
+
 }
 
 .song-item:hover {
-    background: #FFFFFF;
-    border-color: #22223B;
+    background: #263332;
+
+
+    border-color: #3e5752;
+
+    transform: translateX(2px);
+
+
 }
 
 .song-item.active {
-    background: #FFE8F0;
-    border: 3px solid #22223B;
-    box-shadow: 3px 3px 0px #22223B;
+    background:
+        linear-gradient(135deg,
+            rgba(255, 92, 154, 0.16),
+            rgba(255, 92, 154, 0.05));
+
+
+    border: 3px solid var(--pink-dark);
+
+    box-shadow:
+        3px 3px 0 var(--shadow);
+
+
 }
 
 .song-item.active .song-info .song-title {
-    color: #FF3366;
+    color: var(--pink-light);
+
+
     font-weight: 700;
+
+
 }
+
+/* =========================================================
+SONG COVER
+========================================================= */
 
 .song-cover {
     width: 48px;
+
+
     height: 48px;
+
     border-radius: 8px;
+
     object-fit: cover;
-    border: 2px solid #22223B;
+
+    border: 2px solid #48504e;
+
     flex-shrink: 0;
+
+
 }
+
+/* =========================================================
+SONG INFO
+========================================================= */
 
 .song-info {
     flex: 1;
+
+
     min-width: 0;
+
+
 }
 
 .song-title {
     font-size: 14px;
+
+
     font-weight: 600;
-    color: #22223B;
+
+    color: #e2dee4;
+
     margin-bottom: 2px;
+
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
+
 }
 
 .song-artist {
     font-size: 12px;
-    opacity: 0.75;
+
+
+    color: #8b9490;
+
+    opacity: 0.85;
+
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
+
 }
 
 .song-duration {
     font-size: 12px;
-    opacity: 0.65;
+
+
+    color: #777d79;
+
+    opacity: 0.8;
+
     flex-shrink: 0;
+
+
 }
 
-/* Scrollbar untuk semua container */
+/* =========================================================
+SCROLLBAR
+========================================================= */
+
 .lyrics-list::-webkit-scrollbar,
 .song-list::-webkit-scrollbar {
     width: 8px;
@@ -437,59 +1046,72 @@ body {
 
 .lyrics-list::-webkit-scrollbar-track,
 .song-list::-webkit-scrollbar-track {
-    background: #FFF9EC;
+    background: transparent;
+
+
     border-radius: 10px;
+
+
 }
 
 .lyrics-list::-webkit-scrollbar-thumb,
 .song-list::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #FF6B9D, #FF3366);
+    background:
+        linear-gradient(180deg,
+            var(--pink),
+            var(--cyan));
     border-radius: 10px;
-    border: 2px solid #22223B;
+    border: 2px solid transparent;
+    background-clip: padding-box;
 }
 
 .lyrics-list::-webkit-scrollbar-thumb:hover,
 .song-list::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #FFD93D, #FF9F1C);
+    background:
+        linear-gradient(180deg,
+            var(--yellow),
+            var(--pink));
+    background-clip: padding-box;
 }
 
 /* =========================================================
-   ELECTRON CUSTOM TITLE BAR
-   ========================================================= */
+ELECTRON CUSTOM TITLE BAR
+========================================================= */
 
 .app-titlebar {
     position: fixed;
+
+
     top: 0;
     left: 0;
-
     width: 100%;
     height: 36px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     background: #181818;
     border-bottom: 1px solid #2c2c2c;
-
     z-index: 99999;
-
     user-select: none;
-
     -webkit-app-region: drag;
 }
 
 .app-title {
     padding-left: 14px;
 
+
     font-size: 13px;
+
     font-weight: 600;
 
     color: #eeeeee;
+
+
 }
 
 .window-controls {
     height: 100%;
+
 
     display: flex;
 
@@ -498,11 +1120,14 @@ body {
 
 .window-btn {
     width: 48px;
+
+
     height: 100%;
 
     padding: 0;
 
     border: none;
+
     background: transparent;
 
     color: #aaaaaa;
@@ -510,236 +1135,482 @@ body {
     font-size: 18px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     cursor: pointer;
+
+
 }
 
 .window-btn:hover {
     background: #2a2a2a;
+
+
     color: #ffffff;
+
+
 }
 
 .close-btn:hover {
     background: #c42b2b;
+
+
     color: #ffffff;
+
+
 }
 
 /* =========================================================
-   MODE MOBILE - DESKTOP APP STYLE
-   Player -> Playlist -> Lyrics
-   Tanpa scroll
-   ========================================================= */
+MOBILE
+========================================================= */
+
 @media (max-width: 768px) {
-  html,
-  body {
-    height: 100%;
-    overflow: hidden;
-  }
 
-  body {
-    display: block;
-  }
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    gap: 10px;
-    overflow: hidden;
-  }
+    html,
+    body {
+        height: 100%;
 
-  /* --- VISUALIZER: layer paling belakang, nempel di bawah layar, ditembus elemen lain --- */
-  .visualizer-container {
-    position: fixed;
-    top: auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    grid-column: unset;
-    grid-row: unset;
-    width: 100vw;
-    height: 55vh;
-    z-index: 0;
-    pointer-events: none;
-  }
+        overflow: hidden;
 
-  .visualizer {
-    width: 100%;
-    height: 100%;
-    align-items: flex-end;
-    gap: 2px;
-    padding: 0 8px;
-    opacity: 0.6;
-    transform: scaleY(2);
-    transform-origin: bottom center;
-  }
+        background: var(--bg-main);
+    }
 
-  .bar {
-    min-width: 8px;
-    opacity: 0.85;
-    border-radius: 4px;
-    background: #000000;
-  }
+    body {
+        display: block;
+    }
 
-  /* --- Semua card lain jadi transparan-blur biar visualizer kelihatan --- */
-  .player,
-  .lyrics-card,
-  .playlist-card {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    background: rgba(255, 249, 236, 0.85);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 4px solid #22223b;
-    box-shadow: 5px 5px 0px #22223b;
-  }
+    /* =====================================================
+   MOBILE CONTAINER
+   ===================================================== */
 
-  .main-column,
-  .top-row {
-    display: contents;
-  }
+    .container {
+        display: flex;
 
-  /* --- 1) PLAYER paling atas --- */
-  .player {
-    order: 1;
-    flex-shrink: 0;
-    height: auto;
-    padding: 14px 18px;
-    gap: 6px;
-  }
+        flex-direction: column;
 
-  .cover img {
-    width: 84px;
-    height: 84px;
-  }
+        justify-content: flex-start;
 
-  .info {
-    height: auto;
-    padding: 0;
-    gap: 2px;
-  }
+        position: relative;
 
-  .title {
-    font-size: 14px;
-    line-height: 16px;
-    max-height: 32px;
-  }
+        width: 100vw;
 
-  .artist {
-    font-size: 11px;
-  }
+        height: 100vh;
 
-  .progress-container {
-    margin: 8px 0;
-  }
+        gap: 8px;
 
-  .controls {
-    margin: 8px 0;
-    gap: 12px;
-  }
+        overflow: hidden;
 
-  .control-btn {
-    width: 38px;
-    height: 38px;
-    font-size: 14px;
-  }
+        background:
+            radial-gradient(circle at 50% 40%,
+                rgba(255, 92, 154, 0.06),
+                transparent 45%),
+            var(--bg-main);
+    }
 
-  #playBtn {
-    width: 46px;
-    height: 46px;
-    font-size: 16px;
-  }
+    /* =====================================================
+   MOBILE VISUALIZER
+   ===================================================== */
 
-  /* Sembunyikan volume slider di mobile biar hemat tempat */
-  .volume-container {
-    display: none;
-  }
+    .visualizer-container {
+        position: fixed;
 
-  /* --- 2) PLAYLIST: hanya tampilkan lagu yang sedang diputar --- */
-  .playlist-card {
-    order: 2;
-    flex-shrink: 0;
-    height: auto;
-    margin: 0;
-    padding: 10px 16px;
-  }
+        top: auto;
 
-  .playlist-title {
-    display: none;
-  }
+        left: 0;
 
-  .song-list {
-    flex: none;
-    overflow: visible;
-    padding-right: 0;
-  }
+        right: 0;
 
-  .song-item {
-    display: none;
-    margin-bottom: 0;
-    padding: 6px 4px;
-    cursor: default;
-  }
+        bottom: 0;
 
-  .song-item.active {
-    display: flex;
-  }
+        grid-column: unset;
 
-  .song-item:hover {
-    background: transparent;
-  }
+        grid-row: unset;
 
-  .song-cover {
-    width: 38px;
-    height: 38px;
-  }
+        width: 100vw;
 
-  /* --- 3) LIRIK: hanya baris yang sedang aktif --- */
-  .lyrics-card {
-    order: 3;
-    flex: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: auto;
-    min-height: 56px;
-    max-height: 90px;
-    padding: 10px 16px;
-  }
+        height: 55vh;
 
-  .lyrics-title {
-    display: none;
-  }
+        z-index: 0;
 
-  .lyrics-list {
-    flex: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;
-    padding: 0;
-    text-align: center;
-  }
+        pointer-events: none;
+    }
 
-  .lyrics-list.empty {
-    font-size: 13px;
-  }
+    .visualizer {
+        width: 100%;
 
-  .lyric-line {
-    display: none;
-    margin: 0;
-    text-align: center;
-  }
+        height: 100%;
 
-  .lyric-line.active {
-    display: block;
-    font-size: 15px;
-    transform: none;
-  }
+        align-items: flex-end;
+
+        gap: 2px;
+
+        padding: 0 8px;
+
+        opacity: 0.48;
+
+        transform: scaleY(1.8);
+
+        transform-origin: bottom center;
+    }
+
+    .bar {
+        min-width: 6px;
+
+        opacity: 0.8;
+
+        border-radius: 4px;
+
+        background:
+            linear-gradient(to top,
+                rgba(84, 216, 237, 0.65),
+                rgba(255, 92, 154, 0.65),
+                rgba(255, 212, 90, 0.65));
+
+        box-shadow:
+            0 0 8px rgba(84, 216, 237, 0.08);
+    }
+
+    /* =====================================================
+   MOBILE CARDS
+   ===================================================== */
+
+    .player,
+    .lyrics-card,
+    .playlist-card {
+        position: relative;
+
+        z-index: 1;
+
+        width: 100%;
+
+        background:
+            linear-gradient(135deg,
+                rgba(35, 29, 45, 0.91),
+                rgba(24, 24, 31, 0.91));
+
+        backdrop-filter: blur(10px);
+
+        -webkit-backdrop-filter: blur(10px);
+
+        border: 2px solid rgba(90, 86, 105, 0.75);
+
+        box-shadow:
+            4px 4px 0 rgba(5, 5, 9, 0.75);
+    }
+
+    .main-column,
+    .top-row {
+        display: contents;
+    }
+
+    /* =====================================================
+   MOBILE PLAYER
+   ===================================================== */
+
+    .player {
+        order: 1;
+
+        flex-shrink: 0;
+
+        height: auto;
+
+        padding: 14px 18px;
+
+        gap: 6px;
+
+        border-top: none;
+
+        border-radius: 0 0 14px 14px;
+
+        background:
+            radial-gradient(circle at 50% 0%,
+                rgba(255, 92, 154, 0.12),
+                transparent 55%),
+            rgba(36, 29, 45, 0.94);
+    }
+
+    .cover img {
+        width: 84px;
+
+        height: 84px;
+
+        border-width: 3px;
+
+        box-shadow:
+            0 0 0 4px var(--pink-dark),
+            4px 4px 0 var(--shadow),
+            0 0 18px rgba(255, 92, 154, 0.15);
+    }
+
+    /* =====================================================
+   MOBILE INFO
+   ===================================================== */
+
+    .info {
+        height: auto;
+
+        padding: 0;
+
+        gap: 2px;
+    }
+
+    .title {
+        font-size: 14px;
+
+        line-height: 16px;
+
+        max-height: 32px;
+
+        color: var(--pink-light);
+    }
+
+    .artist {
+        font-size: 11px;
+
+        color: var(--text-soft);
+    }
+
+    /* =====================================================
+   MOBILE PROGRESS
+   ===================================================== */
+
+    .progress-container {
+        height: 8px;
+
+        margin: 8px 0;
+
+        background: #302936;
+    }
+
+    /* =====================================================
+   MOBILE CONTROLS
+   ===================================================== */
+
+    .controls {
+        margin: 8px 0;
+
+        gap: 12px;
+    }
+
+    .control-btn {
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 14px;
+
+        border-width: 2px;
+
+        background: #302c39;
+    }
+
+    #playBtn {
+        width: 46px;
+
+        height: 46px;
+
+        font-size: 16px;
+    }
+
+    /* =====================================================
+   MOBILE VOLUME
+   ===================================================== */
+
+    .volume-container {
+        display: none;
+    }
+
+    /* =====================================================
+   MOBILE PLAYLIST
+   ===================================================== */
+
+    .playlist-card {
+        order: 2;
+
+        flex-shrink: 0;
+
+        height: auto;
+
+        margin: 0;
+
+        padding: 10px 16px;
+
+        border-radius: 12px;
+
+        background:
+            radial-gradient(circle at 0% 50%,
+                rgba(99, 214, 154, 0.08),
+                transparent 55%),
+            rgba(25, 42, 42, 0.93);
+    }
+
+    .playlist-title {
+        display: none;
+    }
+
+    .song-list {
+        flex: none;
+
+        overflow: visible;
+
+        padding-right: 0;
+    }
+
+    .song-item {
+        display: none;
+
+        margin-bottom: 0;
+
+        padding: 6px 4px;
+
+        cursor: default;
+    }
+
+    .song-item.active {
+        display: flex;
+        background:
+            rgba(255, 92, 154, 0.08);
+        border: 2px solid rgba(255, 92, 154, 0.55);
+        box-shadow:
+            3px 3px 0 var(--shadow);
+    }
+
+    .song-item:hover {
+        background: transparent;
+    }
+
+    .song-cover {
+        width: 38px;
+        height: 38px;
+        border-color: #53665a;
+    }
+
+    /* =====================================================
+   MOBILE LYRICS
+   ===================================================== */
+
+    .lyrics-card {
+        order: 3;
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        min-height: 56px;
+        max-height: 90px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        background:
+            radial-gradient(circle at 50% 100%,
+                rgba(84, 216, 237, 0.09),
+                transparent 60%),
+            rgba(25, 37, 47, 0.93);
+    }
+
+    .lyrics-title {
+        display: none;
+    }
+
+    .lyrics-list {
+        flex: none;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        overflow: visible;
+
+        padding: 0;
+
+        text-align: center;
+    }
+
+    .lyrics-list.empty {
+        font-size: 13px;
+
+        color: #777f85;
+    }
+
+    .lyric-line {
+        display: none;
+
+        margin: 0;
+
+        text-align: center;
+
+        color: #8f9ca4;
+    }
+
+    .lyric-line.active {
+        display: block;
+
+        font-size: 15px;
+
+        transform: none;
+
+        color: var(--cyan-light);
+
+        text-shadow:
+            0 0 12px rgba(84, 216, 237, 0.2);
+    }
+
+    /* =====================================================
+   MOBILE SCROLLBAR
+   ===================================================== */
+
+    .lyrics-list::-webkit-scrollbar,
+    .song-list::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* =========================================================
+VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+
+    .player {
+        padding: 10px 14px;
+    }
+
+    .cover img {
+        width: 72px;
+
+        height: 72px;
+    }
+
+    .controls {
+        gap: 9px;
+    }
+
+    .control-btn {
+        width: 36px;
+
+        height: 36px;
+    }
+
+    #playBtn {
+        width: 44px;
+
+        height: 44px;
+    }
+
+    .playlist-card,
+    .lyrics-card {
+        padding-left: 12px;
+
+        padding-right: 12px;
+    }
+
+    .lyric-line.active {
+        font-size: 14px;
+    }
 }
